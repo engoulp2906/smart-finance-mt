@@ -1,0 +1,240 @@
+description,category
+Zomato food delivery,Food
+Swiggy order,Food
+McDonalds burger,Food
+Starbucks coffee,Food
+KFC chicken,Food
+Dominos pizza,Food
+Subway sandwich,Food
+Burger King meal,Food
+Cafe Coffee Day,Food
+lunch at canteen,Food
+dinner at restaurant,Food
+breakfast combo,Food
+evening snacks,Food
+ice cream parlour,Food
+local bakery,Food
+D-Mart groceries,Food
+Reliance Fresh supermarket,Food
+BigBasket delivery,Food
+Zepto groceries,Food
+Blinkit order,Food
+Haldirams sweets,Food
+Pizza Hut,Food
+Barbeque Nation buffet,Food
+street food vendor,Food
+tea stall,Food
+fruit stall market,Food
+vegetable market,Food
+milk and bread,Food
+grocery run,Food
+paid for meals,Food
+lunch meal,Food
+dinner,Food
+restaurant,Food
+restaurant dinner with friends,Food
+ordered lunch meal,Food
+breakfast at cafe,Food
+meals,Food
+breakfast,Food
+supper,Food
+dining,Food
+ice cream,Food
+snacks,Food
+fast food,Food
+meal,Food
+drink,Food
+food,Food
+VIT food street snacks,Food
+FC food court lunch,Food
+Dominos near campus,Food
+Zomato delivery to hostel,Food
+midnight Maggie,Food
+groceries,Food
+milk and eggs,Food
+supermarket,Food
+supermarket groceries purchase,Food
+bought milk and eggs today,Food
+monthly groceries at supermarket,Food
+Uber cab ride,Transport
+UBER*TRIP,Transport
+Ola auto,Transport
+Rapido bike taxi,Transport
+IRCTC train ticket,Transport
+MakeMyTrip flight,Transport
+Namma Metro recharge,Transport
+Delhi Metro smart card,Transport
+Indian Oil petrol,Transport
+Bharat Petroleum fuel,Transport
+Shell petrol station,Transport
+HP fuel pump,Transport
+RedBus ticket,Transport
+bus fare,Transport
+auto rickshaw ride,Transport
+FASTag toll recharge,Transport
+highway toll tax,Transport
+mall parking fee,Transport
+cab fare,Transport
+scooty rental,Transport
+Bounce bike share,Transport
+Vogo rental,Transport
+Indigo airlines,Transport
+Air India ticket,Transport
+railway station ticket,Transport
+car wash service,Transport
+mechanic repair,Transport
+puncture repair,Transport
+driving license fee,Transport
+paid for car transport,Transport
+travelling in car,Transport
+uber,Transport
+bus ticket,Transport
+uber ride to office,Transport
+cab from airport,Transport
+metro ticket,Transport
+car,Transport
+transport,Transport
+transportation,Transport
+taxi,Transport
+bus,Transport
+train,Transport
+flight,Transport
+metro,Transport
+petrol,Transport
+fuel,Transport
+cab,Transport
+rickshaw,Transport
+auto,Transport
+Katpadi station auto,Transport
+train to Chennai,Transport
+Vellore bus ticket,Transport
+Amazon shopping,Shopping
+AMAZON PAY INDIA,Shopping
+Flipkart order,Shopping
+Myntra clothing,Shopping
+Ajio fashion,Shopping
+Zara apparel,Shopping
+H&M clothes,Shopping
+Reliance Trends,Shopping
+Lifestyle store,Shopping
+Max Fashion,Shopping
+Chroma electronics,Shopping
+Reliance Digital,Shopping
+Apple Store purchase,Shopping
+new smartphone,Shopping
+laptop accessories,Shopping
+Nike shoes,Shopping
+Adidas sneakers,Shopping
+Puma activewear,Shopping
+Titan watch,Shopping
+RayBan sunglasses,Shopping
+Decathlon sports gear,Shopping
+gift shop purchase,Shopping
+stationary store,Shopping
+bluetooth headphones,Shopping
+wireless mouse,Shopping
+keyboard purchase,Shopping
+electronics store,Shopping
+shopping mall clothes,Shopping
+apparel store,Shopping
+winter jacket,Shopping
+dress,Shopping
+shoes,Shopping
+clothes,Shopping
+new dress and shoes,Shopping
+shopping for clothes,Shopping
+bought branded shoes,Shopping
+Electricity bill payment,Utilities
+BESCOM electricity,Utilities
+Tata Power bill,Utilities
+Adani Electricity,Utilities
+Airtel broadband,Utilities
+ACT Fibernet internet,Utilities
+Jio postpaid bill,Utilities
+Vi mobile recharge,Utilities
+BSNL landline,Utilities
+water bill payment,Utilities
+Mahanagar Gas,Utilities
+Indane gas cylinder,Utilities
+HP Gas booking,Utilities
+property tax payment,Utilities
+apartment maintenance fee,Utilities
+house rent transfer,Utilities
+home internet bill,Utilities
+DTH TV recharge,Utilities
+Tata Sky recharge,Utilities
+Dish TV payment,Utilities
+mobile prepaid recharge,Utilities
+broadband renewal,Utilities
+state electricity board,Utilities
+utility bill desk,Utilities
+Paytm postpaid bill,Utilities
+water tax board,Utilities
+trash collection fee,Utilities
+housing society fee,Utilities
+gas pipeline bill,Utilities
+monthly utilities,Utilities
+VIT semester fee,Education/Special
+college tuition payment,Education/Special
+university hostel fee,Education/Special
+campus mess fee,Education/Special
+library late fine,Education/Special
+Coursera subscription,Education/Special
+Udemy online course,Education/Special
+exam registration fee,Education/Special
+hackathon entry ticket,Education/Special
+GitHub Copilot sub,Education/Special
+Apollo Pharmacy medicines,Education/Special
+hospital consultation,Education/Special
+doctor clinic fee,Education/Special
+MedPlus pharmacy,Education/Special
+blood test lab,Education/Special
+NGO charity donation,Education/Special
+temple donation,Education/Special
+special event expense,Education/Special
+school fee,Education/Special
+college fee,Education/Special
+tuition,Education/Special
+exam fee,Education/Special
+university,Education/Special
+special payment,Education/Special
+paid school fee for this month,Education/Special
+college fee payment,Education/Special
+tuition fee for semester,Education/Special
+exam fee and university payment,Education/Special
+special payment for class registration,Education/Special
+university tuition payment,Education/Special
+German language textbook,Education/Special
+Duolingo Plus German,Education/Special
+club registration fee,Education/Special
+Spotify Premium,Entertainment
+Netflix monthly sub,Entertainment
+Amazon Prime Video,Entertainment
+BookMyShow movie,Entertainment
+PVR Cinemas ticket,Entertainment
+movie,Entertainment
+cinema ticket,Entertainment
+ott subscription,Entertainment
+movie night,Entertainment
+booked movie tickets,Entertainment
+netflix recharge,Entertainment
+Valorant Radianite points,Entertainment
+Riot Games Valorant topup,Entertainment
+Steam game purchase,Entertainment
+PlayStation store,Entertainment
+Sony LIV subscription,Entertainment
+Disney+ Hotstar VIP,Entertainment
+Zee5 premium,Entertainment
+YouTube Premium,Entertainment
+Apple Music subscription,Entertainment
+Twitch channel sub,Entertainment
+Discord Nitro,Entertainment
+Epic Games store,Entertainment
+Xbox Game Pass,Entertainment
+Inox movie tickets,Entertainment
+concert event pass,Entertainment
+standup comedy ticket,Entertainment
+amusement park entry,Entertainment
+gaming cafe hourly,Entertainment
+board game cafe,Entertainment
+bowling alley game,Entertainment

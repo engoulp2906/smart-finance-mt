@@ -1,0 +1,28 @@
+# Dependencies
+node_modules/
+**/node_modules/
+
+# Environment and secrets
+.env
+.env.*
+**/.env
+**/.env.*
+!.env.example
+**/.env.example
+
+# Python cache and virtual environments
+__pycache__/
+**/__pycache__/
+*.pyc
+.venv/
+**/.venv/
+venv/
+**/venv/
+
+# Build and local artifacts
+dist/
+build/
+*.log
+
+# ML artifacts
+*.pkl
