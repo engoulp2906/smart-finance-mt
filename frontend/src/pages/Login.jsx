@@ -19,9 +19,7 @@ export default function Login() {
   const handleInitializeDemo = async () => {
     setIsInitializing(true);
     try {
-      await fetch('http://localhost:5000/api/demo/seed', {
-        method: 'POST',
-      });
+      await http.post('/demo/seed');
       showToast('Demo Account Prepared! You may now log in.');
     } catch (err) {
       showToast('Failed to initialize demo account.', 'error');
