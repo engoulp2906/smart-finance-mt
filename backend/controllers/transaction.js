@@ -2,10 +2,17 @@ const axios = require('axios');
 const multer = require('multer');
 const csvParser = require('csv-parser');
 const { Readable } = require('stream');
+const { DynamoDBClient } = require('@aws-sdk/client-dynamodb');
+const { DynamoDBDocumentClient, PutCommand } = require('@aws-sdk/lib-dynamodb');
 
 const Transaction = require('../models/Transaction');
 
 const upload = multer({ storage: multer.memoryStorage() });
+const dynamoDbClient = new DynamoDBClient({
+  region: process.env.AWS_REGION || 'ap-south-1',
+});
+const dynamoDbDocumentClient = DynamoDBDocumentClient.from(dynamoDbClient);
+const dynamoDbTableName = process.env.DYNAMODB_TABLE_NAME || 'FinanceTransactions';
 
 const parseCsvBuffer = (buffer) =>
   new Promise((resolve, reject) => {
@@ -40,6 +47,122 @@ const buildTransactionPayloads = (rows) =>
       getFirstPresentValue(row, ['rawDescription', 'description', 'Description', 'merchant', 'Merchant'], '')
     ),
   }));
+
+const extractCategorizationResult = (categorizationData) => {
+  if (Array.isArray(categorizationData?.results) && categorizationData.results.length > 0) {
+    return categorizationData.results[0] || {};
+  }
+
+  return categorizationData || {};
+};
+
+const saveTransactionToMongo = async (transactionData) => Transaction.create(transactionData);
+
+const saveTransactionToDynamoDb = async (transactionData) => {
+  const transactionDate = transactionData.transactionDate instanceof Date
+    ? transactionData.transactionDate
+    : new Date(transactionData.transactionDate || Date.now());
+
+  await dynamoDbDocumentClient.send(
+    new PutCommand({
+      TableName: dynamoDbTableName,
+      Item: {
+        transactionId: transactionData.transactionId,
+        amount: transactionData.amount,
+        description: transactionData.rawDescription,
+        category: transactionData.predictedCategory,
+        date: transactionDate.toISOString(),
+      },
+    })
+  );
+};
+
+const createTransaction = async (req, res) => {
+  try {
+    const { amount, description, date, userId: requestUserId } = req.body;
+    const parsedAmount = Number(amount);
+
+    if (!description || typeof description !== 'string') {
+      return res.status(400).json({ message: 'description is required.' });
+    }
+
+    if (!Number.isFinite(parsedAmount)) {
+      return res.status(400).json({ message: 'amount must be a valid number.' });
+    }
+
+    const transactionDate = date ? new Date(date) : new Date();
+
+    if (Number.isNaN(transactionDate.getTime())) {
+      return res.status(400).json({ message: 'date must be a valid date.' });
+    }
+
+    let predictedCategory = 'Uncategorized';
+    let confidenceScore = 0;
+
+    try {
+      const categorizationResponse = await axios.post('http://localhost:5001/api/categorize', {
+        transactions: [description],
+      });
+
+      const categorizationResult = extractCategorizationResult(categorizationResponse.data);
+      predictedCategory = categorizationResult.predictedCategory || predictedCategory;
+      confidenceScore = categorizationResult.confidenceScore || confidenceScore;
+    } catch (mlError) {
+      console.warn('ML categorization unavailable. Falling back to Uncategorized:', mlError.message);
+    }
+
+    const transactionPayload = {
+      transactionId: Date.now().toString(),
+      userId: String(req.user?.userId || requestUserId || 'unknown'),
+      transactionDate,
+      amount: parsedAmount,
+      rawDescription: description,
+      predictedCategory,
+      confidenceScore,
+    };
+
+    let savedTransaction = null;
+    let mongoError = null;
+    let dynamoError = null;
+
+    try {
+      savedTransaction = await saveTransactionToMongo(transactionPayload);
+    } catch (error) {
+      mongoError = error;
+      console.error('MongoDB transaction save failed:', error);
+    }
+
+    try {
+      await saveTransactionToDynamoDb(transactionPayload);
+    } catch (error) {
+      dynamoError = error;
+      console.error('DynamoDB transaction save failed:', error);
+    }
+
+    if (!savedTransaction && mongoError && dynamoError) {
+      return res.status(500).json({
+        message: 'Failed to save transaction to both databases.',
+        mongoError: mongoError.message,
+        dynamoError: dynamoError.message,
+      });
+    }
+
+    return res.status(201).json({
+      message: 'Transaction processed successfully.',
+      transaction: savedTransaction,
+      transactionId: transactionPayload.transactionId,
+      mongoSaved: Boolean(savedTransaction),
+      dynamoSaved: !dynamoError,
+      mongoError: mongoError ? mongoError.message : null,
+      dynamoError: dynamoError ? dynamoError.message : null,
+    });
+  } catch (error) {
+    return res.status(500).json({
+      message: 'Failed to process transaction.',
+      error: error.message,
+    });
+  }
+};
 
 const uploadTransactions = async (req, res) => {
   try {
@@ -233,6 +356,7 @@ const getSmartBudgetInsights = async (req, res) => {
 
 module.exports = {
   upload,
+  createTransaction,
   getSummary,
   getRecentTransactions,
   getAllTransactions,

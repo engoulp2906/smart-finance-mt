@@ -1,6 +1,7 @@
 const express = require('express');
 const {
 	upload,
+	createTransaction,
 	uploadTransactions,
 	getSummary,
 	getRecentTransactions,
@@ -11,6 +12,7 @@ const { authenticateToken } = require('../middleware/auth');
 
 const router = express.Router();
 
+router.post('/', createTransaction);
 router.post('/upload', upload.single('file'), uploadTransactions);
 router.get('/summary', getSummary);
 router.get('/recent', authenticateToken, getRecentTransactions);

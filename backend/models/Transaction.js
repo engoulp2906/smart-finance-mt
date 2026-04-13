@@ -2,6 +2,10 @@ const mongoose = require('mongoose');
 
 const transactionSchema = new mongoose.Schema(
   {
+    transactionId: {
+      type: String,
+      default: '',
+    },
     userId: {
       type: String,
       required: true,
